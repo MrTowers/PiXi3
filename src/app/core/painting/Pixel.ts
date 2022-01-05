@@ -7,28 +7,30 @@ export class Pixel implements ITickable {
     color: Color;
     position: Vector2;
     size: Vector2;
-    constructor (position: Vector2, size: Vector2) {
-        this.color = new Color(255, 0, 0, 1);
+    constructor(position: Vector2, size: Vector2) {
+        this.color = new Color(0, 0, 0, 0);
         this.position = position;
         this.size = size;
     }
 
     update(): void {
-        
+
     }
 
     render(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement): void {
-        ctx.save();
-        ctx.beginPath();
-        ctx.fillStyle = this.color.getRGBA();
-        ctx.strokeStyle = this.color.getRGBA();
-        ctx.rect(this.position.x, this.position.y, this.size.x, this.size.y);
-        ctx.fill();
-        ctx.stroke();
-        ctx.restore();
+        if (this.color.a > 0) {
+            ctx.save();
+            ctx.beginPath();
+            ctx.fillStyle = this.color.getRGBA();
+            ctx.strokeStyle = this.color.getRGBA();
+            ctx.rect(this.position.x, this.position.y, this.size.x, this.size.y);
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+        }
     }
 
-    static draw (position: Vector2) {
+    static draw(position: Vector2) {
         for (let i in cProject.frames[cFrame].layers[cLayer].pixels) {
             let pixel = cProject.frames[cFrame].layers[cLayer].pixels[i];
 

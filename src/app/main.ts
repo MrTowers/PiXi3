@@ -1,3 +1,4 @@
+import { ColorPicker } from "./core/color picker/ColorPicker.js";
 import { Input } from "./core/Input.js";
 import { Color } from "./core/painting/Color.js";
 import { Project } from "./core/Project.js";
@@ -16,6 +17,8 @@ const CURSOR = new Cursor();
 export let cProject = new Project();
 export let cFrame = 0;
 export let cLayer = 0;
+
+export const COLOR_PICKER = new ColorPicker();
 
 export let FIRST_COLOR = new Color(0, 255, 0, 1);
 

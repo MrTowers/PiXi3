@@ -61,10 +61,10 @@ body {
 .frames {
     border: solid var(--secColor) 5px;
     position: absolute;
-    width: 200px;
-    height: 200px;
-    right: 15px;
-    bottom: 230px;
+    height: 130px;
+    right: 30%;
+    left: 30%;
+    bottom: 15px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -83,4 +83,28 @@ canvas {
     border: solid var(--secColor) 5px;
     cursor: none;
     background-color: white;
+}
+
+#colorPicker {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    border: solid 5px var(--secColor);
+    width: 150px;
+    height: 200px;
+    background-color: var(--fourColor);
+}
+
+#colorPicker canvas {
+    border: solid 1px black;
+    position: inherit;
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+}
+
+#colorPicker input {
+    bottom: 20px;
+    width: 20px;
+    height: 20px;
 }

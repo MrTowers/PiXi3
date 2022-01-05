@@ -8,5 +8,6 @@ export class Project {
         this.frames = [
             new Frame(this)
         ];
+        this.projectType = "pixel";
     }
 }
