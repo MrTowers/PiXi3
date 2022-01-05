@@ -16,10 +16,12 @@ export let cFrame = 0;
 export let cLayer = 0;
 export const COLOR_PICKER = new ColorPicker();
 export let FIRST_COLOR = new Color(0, 255, 0, 1);
+CANVAS.addEventListener("mousemove", (e) => {
+    tick();
+});
 function tick() {
     update();
     render();
-    requestAnimationFrame(tick);
 }
 function update() {
     CURSOR.update();
@@ -35,4 +37,3 @@ function render() {
     }
     CURSOR.render(ctx, CANVAS);
 }
-tick();

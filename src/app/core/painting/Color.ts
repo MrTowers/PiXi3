@@ -1,3 +1,5 @@
+import { ColorPicker } from "../color picker/ColorPicker.js";
+
 type _color =
 "black"|
 "white"|
@@ -30,6 +32,17 @@ export class Color {
                 return new Color(255, 255, 255, 1);
             }
         }
+    }
+
+    mul (c: Color) : Color {
+        return new Color(this.r * c.r, this.g * c.g, this.b * c.b, this.a);
+    }
+
+    mulByNumber (v: number) : Color {
+        if (isNaN(v) || !isFinite(v)) {
+            return this.clone();
+        }
+        return new Color(this.r * v, this.g * v, this.b * v, this.a);
     }
 
     getRGBA () : string {

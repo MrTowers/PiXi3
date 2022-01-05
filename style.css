@@ -22,6 +22,12 @@ body {
     padding-top: 50px;
 }
 
+.main canvas {
+    border: solid var(--secColor) 5px;
+    cursor: none;
+    background-color: white;
+}
+
 .layers {
     border: solid var(--secColor) 5px;
     position: absolute;
@@ -79,12 +85,6 @@ h1 {
     text-align: center;
 }
 
-canvas {
-    border: solid var(--secColor) 5px;
-    cursor: none;
-    background-color: white;
-}
-
 #colorPicker {
     position: absolute;
     left: 15px;
@@ -93,18 +93,19 @@ canvas {
     width: 150px;
     height: 200px;
     background-color: var(--fourColor);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-#colorPicker canvas {
-    border: solid 1px black;
-    position: inherit;
+#colorPickerCanvas canvas {
+    border: none;
     margin: 5px;
-    width: 50px;
-    height: 50px;
+    background-color: white;
 }
 
-#colorPicker input {
-    bottom: 20px;
-    width: 20px;
-    height: 20px;
+.inputs {
+    display: flex;
+    flex-direction: row;
+    width: 130px;
 }

@@ -18,6 +18,15 @@ export class Color {
             }
         }
     }
+    mul(c) {
+        return new Color(this.r * c.r, this.g * c.g, this.b * c.b, this.a);
+    }
+    mulByNumber(v) {
+        if (isNaN(v) || !isFinite(v)) {
+            return this.clone();
+        }
+        return new Color(this.r * v, this.g * v, this.b * v, this.a);
+    }
     getRGBA() {
         return `rgba(${this.r}, ${this.g}, ${this.b}, ${this.a})`;
     }
