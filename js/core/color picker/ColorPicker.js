@@ -65,6 +65,8 @@ export class ColorPicker {
                 this.pixels.push(p);
             }
         }
+        this.pointerColor = new Color();
+        this.render();
     }
     render() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -88,5 +90,7 @@ export class ColorPicker {
     }
     setPointer(position) {
         this.pointer = position;
+    }
+    setPointerColor() {
     }
 }

@@ -11,6 +11,7 @@ export class ColorPicker {
     ctx: CanvasRenderingContext2D;
     hue: number;
     pointer: Vector2;
+    pointerColor: Color;
     private mouseDown: boolean = false;
     pixels: Pixel[] = [];
 
@@ -84,6 +85,12 @@ export class ColorPicker {
                 this.pixels.push(p);
             }
         }
+
+        
+
+        this.pointerColor = new Color();
+
+        this.render();
     }
 
     render () {
@@ -115,5 +122,9 @@ export class ColorPicker {
 
     setPointer (position: Vector2) {
         this.pointer = position;
+    }
+
+    setPointerColor() {
+
     }
 }
