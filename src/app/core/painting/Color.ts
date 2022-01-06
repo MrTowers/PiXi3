@@ -45,6 +45,63 @@ export class Color {
         return new Color(this.r * v, this.g * v, this.b * v, this.a);
     }
 
+    static fromHue (h: number) : Color {
+        h = h % 360;
+        const c = Math.floor(h / 60);
+        const x = h / 60 - c;
+        const m = 255 * (1 - Math.abs(x - 0.5) * 2);
+        let r = 0;
+        let g = 0;
+        let b = 0;
+        switch (c) {
+            case 0: {
+                r = 255;
+                g = m;
+                b = 0;
+                break;
+            }
+            case 1: {
+                r = m;
+                g = 255;
+                b = 0;
+                break;
+            }
+            case 2: {
+                r = 0;
+                g = 255;
+                b = m;
+                break;
+            }
+            case 3: {
+                r = 0;
+                g = m;
+                b = 255;
+                break;
+            }
+            case 4: {
+                r = m;
+                g = 0;
+                b = 255;
+                break;
+            }
+            case 5: {
+                r = 255;
+                g = 0;
+                b = m;
+                break;
+            }
+
+            default: {
+                r = 0;
+                g = 0;
+                b = 0;
+                break;
+            }
+        }
+        return new Color(r, g, b, 1);
+
+    }
+
     getRGBA () : string {
         return `rgba(${this.r}, ${this.g}, ${this.b}, ${this.a})`;
     }

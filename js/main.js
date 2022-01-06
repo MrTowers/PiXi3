@@ -19,6 +19,20 @@ export let FIRST_COLOR = new Color(0, 255, 0, 1);
 CANVAS.addEventListener("mousemove", (e) => {
     tick();
 });
+CANVAS.addEventListener("mousedown", (e) => {
+    tick();
+});
+export function setColor(whatVar, value) {
+    switch (whatVar) {
+        case "first": {
+            FIRST_COLOR = value.clone();
+            break;
+        }
+        case "second": {
+            break;
+        }
+    }
+}
 function tick() {
     update();
     render();

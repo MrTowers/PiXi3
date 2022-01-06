@@ -4,6 +4,8 @@ import { Color } from "./core/painting/Color.js";
 import { Project } from "./core/Project.js";
 import { Cursor } from "./visual/Cursor.js";
 
+type _color = "first" | "second";
+
 export const VERSION = "0.1";
 
 document.addEventListener("contextmenu", (e) => {
@@ -24,7 +26,24 @@ export let FIRST_COLOR = new Color(0, 255, 0, 1);
 
 CANVAS.addEventListener("mousemove", (e) => {
     tick();
-})
+});
+
+CANVAS.addEventListener("mousedown", (e) => {
+    tick();
+});
+
+export function setColor (whatVar: _color, value: Color) {
+    switch (whatVar) {
+        case "first": {
+            FIRST_COLOR = value.clone();
+            break;
+        }
+
+        case "second": {
+            break;
+        }
+    }
+}
 
 
 function tick () {

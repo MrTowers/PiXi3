@@ -39,4 +39,14 @@ export class Pixel implements ITickable {
             }
         }
     }
+
+    static getAt (position: Vector2) : Pixel {
+        for (let i in cProject.frames[cFrame].layers[cLayer].pixels) {
+            let pixel = cProject.frames[cFrame].layers[cLayer].pixels[i];
+            if (Vector2.between(position, pixel.position, pixel.position.add(pixel.size))) {
+                return pixel;
+            }
+        }
+        return new Pixel(new Vector2(), new Vector2);
+    }
 }

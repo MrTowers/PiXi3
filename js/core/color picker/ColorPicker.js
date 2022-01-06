@@ -1,3 +1,4 @@
+import { FIRST_COLOR, setColor } from "../../main.js";
 import { Vector2 } from "../Math/Vector2.js";
 import { Color } from "../painting/Color.js";
 import { Pixel } from "../painting/Pixel.js";
@@ -17,12 +18,17 @@ export class ColorPicker {
                 this.mouseDown = true;
                 this.setPointer(new Vector2(e.offsetX, e.offsetY));
                 this.render();
+                this.setPaintColor(e.button);
+                this.setPointerColor();
             }
+            this.setPaintColor(e.button);
         });
         this.canvas.addEventListener("mousemove", (e) => {
             if (this.mouseDown) {
                 this.setPointer(new Vector2(e.offsetX, e.offsetY));
                 this.render();
+                this.setPaintColor(e.button);
+                this.setPointerColor();
             }
         });
         this.div = document.getElementById("colorPickerCanvas");
@@ -65,7 +71,7 @@ export class ColorPicker {
                 this.pixels.push(p);
             }
         }
-        this.pointerColor = new Color();
+        this.pointerColor = new Color(255, 255, 255, 1);
         this.render();
     }
     render() {
@@ -75,7 +81,7 @@ export class ColorPicker {
     }
     renderPointer() {
         this.ctx.save();
-        this.ctx.fillStyle = "black";
+        this.ctx.fillStyle = this.pointerColor.getRGBA();
         this.ctx.fillRect(this.pointer.x - (pointerSize / 2), this.pointer.y - (pointerSize / 2), pointerSize, pointerSize);
         this.ctx.restore();
     }
@@ -92,5 +98,28 @@ export class ColorPicker {
         this.pointer = position;
     }
     setPointerColor() {
+        let l = FIRST_COLOR.r + FIRST_COLOR.g + FIRST_COLOR.b;
+        if (l > (255 + 255 + 255) / 2) {
+            this.pointerColor = new Color(0, 0, 0, 1);
+        }
+        else {
+            this.pointerColor = new Color(255, 255, 255, 1);
+        }
+    }
+    setPaintColor(button) {
+        for (let i in this.pixels) {
+            if (Vector2.between(this.pointer, this.pixels[i].position, this.pixels[i].position.add(this.pixels[i].size))) {
+                switch (button) {
+                    case 0: {
+                        setColor("first", this.pixels[i].color);
+                        return;
+                    }
+                    case 1: {
+                        setColor("second", this.pixels[i].color);
+                        return;
+                    }
+                }
+            }
+        }
     }
 }
