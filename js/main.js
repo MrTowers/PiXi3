@@ -1,7 +1,9 @@
+import { Bottombar } from "./core/bottombar/Bottombar.js";
 import { ColorPicker } from "./core/color picker/ColorPicker.js";
 import { Input } from "./core/Input.js";
 import { Color } from "./core/painting/Color.js";
 import { Project } from "./core/Project.js";
+import { Topbar } from "./core/Topbar.js";
 import { Cursor } from "./visual/Cursor.js";
 export const VERSION = "0.1";
 document.addEventListener("contextmenu", (e) => {
@@ -15,6 +17,10 @@ export let cProject = new Project();
 export let cFrame = 0;
 export let cLayer = 0;
 export const COLOR_PICKER = new ColorPicker();
+export const TOPBAR = new Topbar();
+export const BOTTOMBAR = new Bottombar();
+TOPBAR.struct();
+BOTTOMBAR.struct();
 export let FIRST_COLOR = new Color(0, 255, 0, 1);
 CANVAS.addEventListener("mousemove", (e) => {
     tick();
@@ -51,3 +57,8 @@ function render() {
     }
     CURSOR.render(ctx, CANVAS);
 }
+let x = 0;
+setInterval(() => {
+    BOTTOMBAR.stateAnim.update(x);
+    x += 0.01;
+}, 16);
