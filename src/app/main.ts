@@ -8,6 +8,9 @@ import { Cursor } from "./visual/Cursor.js";
 
 type _color = "first" | "second";
 
+//global settings
+export let GRID = true;
+
 export const VERSION = "0.1";
 
 document.addEventListener("contextmenu", (e) => {

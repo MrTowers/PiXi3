@@ -5,6 +5,8 @@ import { Color } from "./core/painting/Color.js";
 import { Project } from "./core/Project.js";
 import { Topbar } from "./core/Topbar.js";
 import { Cursor } from "./visual/Cursor.js";
+//global settings
+export let GRID = true;
 export const VERSION = "0.1";
 document.addEventListener("contextmenu", (e) => {
     e.preventDefault();
