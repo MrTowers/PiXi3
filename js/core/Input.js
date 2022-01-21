@@ -1,4 +1,5 @@
 import { INPUT } from "../main.js";
+import { KeyEvent } from "./KeyEvent.js";
 import { Vector2 } from "./Math/Vector2.js";
 export class Input {
     constructor(canvas) {
@@ -30,6 +31,13 @@ export class Input {
                 }
             }
         });
+        document.addEventListener("keydown", (e) => {
+            Input.keys[e.key] = true;
+            Input.dispacheEvenets();
+        });
+        document.addEventListener("keyup", (e) => {
+            Input.keys[e.key] = false;
+        });
     }
     static getMousePosition() {
         return INPUT.mousePosition.clone();
@@ -44,4 +52,19 @@ export class Input {
             }
         }
     }
+    static addKeyEvent(key = "", event = () => { }) {
+        Input.keyEvents.push(new KeyEvent(key, event));
+    }
+    static getKey(key = "") {
+        return Input.keys[key];
+    }
+    static dispacheEvenets() {
+        for (let i in Input.keyEvents) {
+            if (Input.keys[Input.keyEvents[i].key]) {
+                Input.keyEvents[i].event();
+            }
+        }
+    }
 }
+Input.keys = {};
+Input.keyEvents = [];

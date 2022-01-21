@@ -1,4 +1,5 @@
 import { cFrame, cLayer, cProject, FIRST_COLOR } from "../../main.js";
+import { History } from "../History.js";
 import { Vector2 } from "../Math/Vector2.js";
 import { Color } from "./Color.js";
 export class Pixel {
@@ -28,6 +29,8 @@ export class Pixel {
                 pixel.color = FIRST_COLOR.clone();
             }
         }
+        History.pushNew();
+        console.log("pushibng");
     }
     static getAt(position) {
         for (let i in cProject.frames[cFrame].layers[cLayer].pixels) {
@@ -37,5 +40,10 @@ export class Pixel {
             }
         }
         return new Pixel(new Vector2(), new Vector2);
+    }
+    clone() {
+        let p = new Pixel(this.position, this.size);
+        p.color = this.color.clone();
+        return p;
     }
 }

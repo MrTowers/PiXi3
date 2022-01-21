@@ -1,5 +1,6 @@
 import { Bottombar } from "./core/bottombar/Bottombar.js";
 import { ColorPicker } from "./core/color picker/ColorPicker.js";
+import { History } from "./core/History.js";
 import { Input } from "./core/Input.js";
 import { Color } from "./core/painting/Color.js";
 import { Project } from "./core/Project.js";
@@ -8,6 +9,7 @@ import { Cursor } from "./visual/Cursor.js";
 //global settings
 export let GRID = true;
 export const VERSION = "0.1";
+//blokowanie wielu rzeczy
 document.addEventListener("contextmenu", (e) => {
     e.preventDefault();
 });
@@ -21,6 +23,7 @@ export let cLayer = 0;
 export const COLOR_PICKER = new ColorPicker();
 export const TOPBAR = new Topbar();
 export const BOTTOMBAR = new Bottombar();
+export const HISTORY = new History();
 TOPBAR.struct();
 BOTTOMBAR.struct();
 export let FIRST_COLOR = new Color(0, 255, 0, 1);
@@ -58,6 +61,9 @@ function render() {
         }
     }
     CURSOR.render(ctx, CANVAS);
+}
+export function setProject(project) {
+    cProject = project;
 }
 let x = 0;
 setInterval(() => {

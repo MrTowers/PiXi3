@@ -1,4 +1,5 @@
 import { cFrame, cLayer, cProject, FIRST_COLOR } from "../../main.js";
+import { History } from "../History.js";
 import { ITickable } from "../Interfaces/Tickable.js";
 import { Vector2 } from "../Math/Vector2.js";
 import { Color } from "./Color.js";
@@ -38,6 +39,8 @@ export class Pixel implements ITickable {
                 pixel.color = FIRST_COLOR.clone();
             }
         }
+        History.pushNew();
+        console.log("pushibng");
     }
 
     static getAt (position: Vector2) : Pixel {
@@ -48,5 +51,11 @@ export class Pixel implements ITickable {
             }
         }
         return new Pixel(new Vector2(), new Vector2);
+    }
+
+    clone () {
+        let p = new Pixel(this.position, this.size);
+        p.color = this.color.clone();
+        return p;
     }
 }

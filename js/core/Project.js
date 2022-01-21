@@ -1,5 +1,7 @@
 import { cProject, VERSION } from "../main.js";
 import { Frame } from "./Frame.js";
+import { History } from "./History.js";
+import { Input } from "./Input.js";
 export class Project {
     constructor(name = "untitled") {
         this.version = VERSION;
@@ -23,4 +25,26 @@ export class Project {
     }
     static load() {
     }
+    clone() {
+        let p = new Project(this.name);
+        for (let i in this.frames) {
+            p.frames.push(this.frames[i].clone());
+        }
+        p.heigth = this.heigth;
+        p.projectType = this.projectType;
+        p.version = this.version;
+        p.width = this.width;
+        return p;
+    }
 }
+Input.addKeyEvent("s", () => {
+    if (Input.getKey("Control")) {
+        Project.save();
+    }
+});
+Input.addKeyEvent("z", () => {
+    if (Input.getKey("Control")) {
+        History.popLast();
+        console.log("ctrl z");
+    }
+});
