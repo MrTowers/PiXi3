@@ -1,3 +1,4 @@
+import { LZString } from "../libs/LZString.js";
 import { cProject, VERSION } from "../main.js";
 import { Frame } from "./Frame.js";
 import { History } from "./History.js";
@@ -26,8 +27,9 @@ export class Project {
 
     static save () {
         let prString = JSON.stringify(cProject);
+        let forSave = LZString.compress(prString);
         let a = document.createElement("a");
-        a.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(prString));
+        a.setAttribute("href", "data:text/plain;charset=utf-8," + forSave);
         a.setAttribute("download", `${cProject.name}.px3p`);
 
         a.style.display = "none";
@@ -38,21 +40,6 @@ export class Project {
 
     static load () {
         
-    }
-
-    clone () {
-        let p = new Project(this.name);
-        
-        for (let i in this.frames) {
-            p.frames.push(this.frames[i].clone());
-        }
-
-        p.heigth = this.heigth;
-        p.projectType = this.projectType;
-        p.version = this.version;
-        p.width = this.width;
-
-        return p;
     }
 }
 
